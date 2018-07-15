@@ -1,8 +1,10 @@
 package com.iliyangermanov.sample.view
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Paint
 import android.view.View
+import android.view.WindowManager
 import com.iliyangermanov.modernmvpx.MVPActivity
 import com.iliyangermanov.sample.MainContract
 import com.iliyangermanov.sample.R
@@ -14,43 +16,48 @@ class MainActivity : MVPActivity<MainContract.Presenter>(), MainContract.View {
     override fun getContentLayout() = R.layout.activity_main
 
 
-    override fun initPresenter(applicationContext: Context): MainContract.Presenter {
+    override fun initPresenter(applicationContext: Context, intent: Intent): MainContract.Presenter {
         return MainPresenter(this, MainModel())
     }
 
+    override fun onBeforeSetContentView() {
+        window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN,
+                WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN)
+    }
+
     override fun onSetupUI() {
-        tvData.paintFlags = tvData.paintFlags or Paint.UNDERLINE_TEXT_FLAG
+        tvGreeting.paintFlags = tvGreeting.paintFlags or Paint.UNDERLINE_TEXT_FLAG
     }
 
     override fun onSetupListeners() {
         btnFetch.setOnClickListener {
-            presenter.loadData("Iliyan")
+            presenter.showGreeting("Iliyan")
         }
     }
 
     override fun onReady() {
-        presenter.loadData("Iliyan")
+        presenter.showGreeting("Iliyan")
     }
 
     override fun showLoading() {
         btnFetch.isEnabled = false
         pbLoading.visibility = View.VISIBLE
-        tvData.visibility = View.INVISIBLE
+        tvGreeting.visibility = View.INVISIBLE
     }
 
-    override fun showData(data: String) {
+    override fun showGreeting(greeting: String) {
         hideLoading()
-        tvData.text = data
+        tvGreeting.text = greeting
     }
 
     override fun showError() {
         hideLoading()
-        tvData.text = getString(R.string.err_fetch_data)
+        tvGreeting.text = getString(R.string.err_fetch_data)
     }
 
     private fun hideLoading() {
         btnFetch.isEnabled = true
         pbLoading.visibility = View.INVISIBLE
-        tvData.visibility = View.VISIBLE
+        tvGreeting.visibility = View.VISIBLE
     }
 }

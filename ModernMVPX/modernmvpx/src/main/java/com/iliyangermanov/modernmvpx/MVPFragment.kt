@@ -31,15 +31,10 @@ abstract class MVPFragment<P : BasePresenter> : Fragment(), BaseView {
     }
 
     @CallSuper
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        onSetupUI()
-    }
-
-    @CallSuper
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         presenter = initPresenter(activity!!.applicationContext)
+        onSetupUI()
         onSetupListeners()
     }
 

@@ -8,7 +8,7 @@
     tools:context="com.iliyangermanov.sample.view.MainActivity">
 
     <TextView
-        android:id="@+id/tvData"
+        android:id="@+id/tvGreeting"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
@@ -41,7 +41,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="31dp"
         android:text="@string/btn_fetch"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
