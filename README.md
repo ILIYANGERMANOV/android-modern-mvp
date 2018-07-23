@@ -1,4 +1,4 @@
-# Same as [AndroiX Modern MVP](https://github.com/ILIYANGERMANOV/androidx-modern-mvp)
+# Documentation can be found in [AndroidX Modern MVP](https://github.com/ILIYANGERMANOV/androidx-modern-mvp)
 Use this library if you work with `com.android.support` libraries
 
 ## Download
